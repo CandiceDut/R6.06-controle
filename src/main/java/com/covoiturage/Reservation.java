@@ -22,4 +22,11 @@ public class Reservation {
     public double getDistanceEnKm() {
         return distanceEnKm;
     }
+
+    public double calculerMontantReservation() {
+        double prixPlace = getTrajet().getPrixParPlace();
+        int places = getNombrePlaces();
+        double distance = getDistanceEnKm();
+        return prixPlace * places * distance;
+    }
 }

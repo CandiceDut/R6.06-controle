@@ -29,7 +29,7 @@ public class Passager {
         StringBuilder resultat = new StringBuilder("Facture pour " + getNom() + "\n");
 
         for (Reservation reservation : reservations) {
-            double montantReservation = calculerMontantReservation(reservation);
+            double montantReservation = reservation.calculerMontantReservation();
             resultat.append("\t")
                     .append(reservation.getTrajet().getDescription())
                     .append("\t")
@@ -40,12 +40,5 @@ public class Passager {
 
         resultat.append("Montant total : ").append(montantTotal);
         return resultat.toString();
-    }
-
-    private double calculerMontantReservation(Reservation reservation) {
-        double prixPlace = reservation.getTrajet().getPrixParPlace();
-        int places = reservation.getNombrePlaces();
-        double distance = reservation.getDistanceEnKm();
-        return prixPlace * places * distance;
     }
 }
