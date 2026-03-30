@@ -15,28 +15,31 @@ class PassengerTest {
     }
 
     @Test
-    void DevraitRenvoyerVraiSiPassagerNaAucuneReservation() {
+    void should_return_true_if_passenger_have_0_reservation() {
+        // Given
+        // When
+        // Then
         assertThat(passenger.getReservations())
                 .isNotNull()
                 .isEmpty();
     }
 
     @Test
-    void DevraitGenererUneFactureAvecUneSeuleReservation() {
+    void should_generate_bill_with_only_one_reservation() {
         // Given
-        TrajetCovoiturage trajet =
+        TrajetCovoiturage trip =
                 new TrajetCovoiturage("Trajet court", 1, 2.0);
 
         Reservation reservation =
-                new Reservation(trajet, 2, 10.0);
+                new Reservation(trip, 2, 10.0);
 
         passenger.addReservation(reservation);
 
         // When
-        String facture = passenger.generateBill();
+        String bill = passenger.generateBill();
 
         // Then
-        assertThat(facture)
+        assertThat(bill)
                 .startsWith("Facture pour Alice")
                 .contains("Trajet court")
                 .contains("200.0")
@@ -44,26 +47,26 @@ class PassengerTest {
     }
 
     @Test
-    void DevraitGenererUneFactureAvecPlusieursReservation() {
+    void should_generate_bill_with_multiple_reservations() {
         //Given
-        TrajetCovoiturage trajetEco =
+        TrajetCovoiturage ecoTrip =
                 new TrajetCovoiturage("Eco", 5, 2.0);
-        Reservation reservationEco =
-                new Reservation(trajetEco, 1, 10.0);
+        Reservation ecoReservation =
+                new Reservation(ecoTrip, 1, 10.0);
 
-        TrajetCovoiturage trajetPremium =
+        TrajetCovoiturage premiumTrip =
                 new TrajetCovoiturage("Premium", 4, 1.0);
-        Reservation reservationPremium =
-                new Reservation(trajetPremium, 3, 5.0);
+        Reservation premiumReservation =
+                new Reservation(premiumTrip, 3, 5.0);
 
-        passenger.addReservation(reservationEco);
-        passenger.addReservation(reservationPremium);
+        passenger.addReservation(ecoReservation);
+        passenger.addReservation(premiumReservation);
 
         // When
-        String facture = passenger.generateBill();
+        String bill = passenger.generateBill();
 
         // Then
-        assertThat(facture)
+        assertThat(bill)
                 .startsWith("Facture pour Alice")
                 .contains("Eco")
                 .contains("Premium")
