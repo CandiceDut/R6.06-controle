@@ -1,32 +1,32 @@
 package com.covoiturage;
 
 public class Reservation {
-    private carpoolingTrip trajet;
-    private int nombrePlaces;
-    private double distanceEnKm;
+    private carpoolingTrip trip;
+    private int placeNumber;
+    private double distanceInKm;
 
-    public Reservation(carpoolingTrip trajet, int nombrePlaces, double distanceEnKm) {
-        this.trajet = trajet;
-        this.nombrePlaces = nombrePlaces;
-        this.distanceEnKm = distanceEnKm;
+    public Reservation(carpoolingTrip trip, int placeNumber, double distanceInKm) {
+        this.trip = trip;
+        this.placeNumber = placeNumber;
+        this.distanceInKm = distanceInKm;
     }
 
-    public carpoolingTrip getTrajet() {
-        return trajet;
+    public carpoolingTrip getTrip() {
+        return trip;
     }
 
-    public int getNombrePlaces() {
-        return nombrePlaces;
+    public int getPlaceNumber() {
+        return placeNumber;
     }
 
-    public double getDistanceEnKm() {
-        return distanceEnKm;
+    public double getDistanceInKm() {
+        return distanceInKm;
     }
 
     public double calculerMontantReservation() {
-        double prixPlace = getTrajet().getPricePerPlace();
-        int places = getNombrePlaces();
-        double distance = getDistanceEnKm();
-        return prixPlace * places * distance;
+        double pricePlace = getTrip().getPricePerPlace();
+        int places = getPlaceNumber();
+        double distance = getDistanceInKm();
+        return pricePlace * places * distance;
     }
 }

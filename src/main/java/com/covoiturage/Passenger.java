@@ -31,7 +31,7 @@ public class Passenger {
         for (Reservation reservation : reservations) {
             double reservationAmount = reservation.calculerMontantReservation();
             result.append("\t")
-                    .append(reservation.getTrajet().getDescription())
+                    .append(reservation.getTrip().getDescription())
                     .append("\t")
                     .append(reservationAmount)
                     .append("\n");
