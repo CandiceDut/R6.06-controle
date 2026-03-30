@@ -27,8 +27,8 @@ class PassengerTest {
     @Test
     void should_generate_bill_with_only_one_reservation() {
         // Given
-        TrajetCovoiturage trip =
-                new TrajetCovoiturage("Trajet court", 1, 2.0);
+        carpoolingTrip trip =
+                new carpoolingTrip("Trajet court", 1, 2.0);
 
         Reservation reservation =
                 new Reservation(trip, 2, 10.0);
@@ -49,13 +49,13 @@ class PassengerTest {
     @Test
     void should_generate_bill_with_multiple_reservations() {
         //Given
-        TrajetCovoiturage ecoTrip =
-                new TrajetCovoiturage("Eco", 5, 2.0);
+        carpoolingTrip ecoTrip =
+                new carpoolingTrip("Eco", 5, 2.0);
         Reservation ecoReservation =
                 new Reservation(ecoTrip, 1, 10.0);
 
-        TrajetCovoiturage premiumTrip =
-                new TrajetCovoiturage("Premium", 4, 1.0);
+        carpoolingTrip premiumTrip =
+                new carpoolingTrip("Premium", 4, 1.0);
         Reservation premiumReservation =
                 new Reservation(premiumTrip, 3, 5.0);
 

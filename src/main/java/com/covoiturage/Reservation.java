@@ -1,17 +1,17 @@
 package com.covoiturage;
 
 public class Reservation {
-    private TrajetCovoiturage trajet;
+    private carpoolingTrip trajet;
     private int nombrePlaces;
     private double distanceEnKm;
 
-    public Reservation(TrajetCovoiturage trajet, int nombrePlaces, double distanceEnKm) {
+    public Reservation(carpoolingTrip trajet, int nombrePlaces, double distanceEnKm) {
         this.trajet = trajet;
         this.nombrePlaces = nombrePlaces;
         this.distanceEnKm = distanceEnKm;
     }
 
-    public TrajetCovoiturage getTrajet() {
+    public carpoolingTrip getTrajet() {
         return trajet;
     }
 
@@ -24,7 +24,7 @@ public class Reservation {
     }
 
     public double calculerMontantReservation() {
-        double prixPlace = getTrajet().getPrixParPlace();
+        double prixPlace = getTrajet().getPricePerPlace();
         int places = getNombrePlaces();
         double distance = getDistanceEnKm();
         return prixPlace * places * distance;
