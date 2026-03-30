@@ -5,18 +5,18 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-class PassagerTest {
+class PassengerTest {
 
-    private Passager passager;
+    private Passenger passenger;
 
     @BeforeEach
     void setUp() {
-        passager = new Passager("Alice");
+        passenger = new Passenger("Alice");
     }
 
     @Test
     void DevraitRenvoyerVraiSiPassagerNaAucuneReservation() {
-        assertThat(passager.getReservations())
+        assertThat(passenger.getReservations())
                 .isNotNull()
                 .isEmpty();
     }
@@ -30,10 +30,10 @@ class PassagerTest {
         Reservation reservation =
                 new Reservation(trajet, 2, 10.0);
 
-        passager.ajouterReservation(reservation);
+        passenger.addReservation(reservation);
 
         // When
-        String facture = passager.genererFacture();
+        String facture = passenger.generateBill();
 
         // Then
         assertThat(facture)
@@ -56,11 +56,11 @@ class PassagerTest {
         Reservation reservationPremium =
                 new Reservation(trajetPremium, 3, 5.0);
 
-        passager.ajouterReservation(reservationEco);
-        passager.ajouterReservation(reservationPremium);
+        passenger.addReservation(reservationEco);
+        passenger.addReservation(reservationPremium);
 
         // When
-        String facture = passager.genererFacture();
+        String facture = passenger.generateBill();
 
         // Then
         assertThat(facture)
