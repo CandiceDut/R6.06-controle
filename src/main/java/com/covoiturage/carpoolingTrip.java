@@ -2,10 +2,10 @@ package com.covoiturage;
 
 public class carpoolingTrip {
     private String tripDescription;
-    private int tripType; // 1: courte distance, 2: longue distance, 3: navette, 4: premium, 5: eco
+    private TripType tripType; // 1: courte distance, 2: longue distance, 3: navette, 4: premium, 5: eco
     private double pricePerPlace;
 
-    public carpoolingTrip(String description, int type, double basePricePerKm) {
+    public carpoolingTrip(String description, TripType type, double basePricePerKm) {
         this.tripDescription = description;
         this.tripType = type;
         fixPricePerPlace(basePricePerKm);
@@ -15,7 +15,7 @@ public class carpoolingTrip {
         return tripDescription;
     }
 
-    public int getTripType() {
+    public TripType getTripType() {
         return tripType;
     }
 
@@ -25,11 +25,11 @@ public class carpoolingTrip {
 
     private void fixPricePerPlace(double basePricePerKm) {
         switch (this.tripType) {
-            case 1: this.pricePerPlace = basePricePerKm * 5.0; break;   // courte distance
-            case 2: this.pricePerPlace = basePricePerKm * 3.0; break;   // longue distance
-            case 3: this.pricePerPlace = basePricePerKm * 4.0; break;   // navette
-            case 4: this.pricePerPlace = basePricePerKm * 6.0; break;   // premium
-            case 5: this.pricePerPlace = basePricePerKm * 2.5; break;   // eco
+            case SHORT_DISTANCE_TRIP: this.pricePerPlace = new ShortDistanceStrategy().calculate(basePricePerKm); break;   // courte distance
+            case LONG_DISTANCE_TRIP: this.pricePerPlace = new LongDistanceStrategy().calculate(basePricePerKm); break;   // longue distance
+            case SHUTTLE_TRIP: this.pricePerPlace = new ShuttleStrategy().calculate(basePricePerKm); break;   // navette
+            case PREMIUM_TRIP: this.pricePerPlace = new PremiumStrategy().calculate(basePricePerKm); break;   // premium
+            case ECO_TRIP: this.pricePerPlace = new EcoStrategy().calculate(basePricePerKm); break;   // eco
             default: throw new RuntimeException("Type de trajet illégal");
         }
     }

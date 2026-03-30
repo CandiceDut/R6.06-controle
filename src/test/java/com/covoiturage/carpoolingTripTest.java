@@ -7,42 +7,42 @@ class carpoolingTripTest {
 
     @Test
     void should_have_price_of_10_if_short_trip() {
-        carpoolingTrip trip = new carpoolingTrip("Court", 1, 2.0);
+        carpoolingTrip trip = new carpoolingTrip("Court", TripType.SHORT_DISTANCE_TRIP, 2.0);
 
         assertThat(trip.getPricePerPlace()).isEqualTo(10.0);
     }
 
     @Test
     void should_have_price_of_6_if_long_distance_trip() {
-        carpoolingTrip trip = new carpoolingTrip("Long", 2, 2.0);
+        carpoolingTrip trip = new carpoolingTrip("Long", TripType.LONG_DISTANCE_TRIP, 2.0);
 
         assertThat(trip.getPricePerPlace()).isEqualTo(6.0);
     }
 
     @Test
     void should_have_price_of_8_if_shuttle_trip() {
-        carpoolingTrip trip = new carpoolingTrip("Navette", 3, 2.0);
+        carpoolingTrip trip = new carpoolingTrip("Navette", TripType.SHUTTLE_TRIP, 2.0);
 
         assertThat(trip.getPricePerPlace()).isEqualTo(8.0);
     }
 
     @Test
     void should_have_price_of_12_if_premium_trip() {
-        carpoolingTrip trip = new carpoolingTrip("Premium", 4, 2.0);
+        carpoolingTrip trip = new carpoolingTrip("Premium", TripType.PREMIUM_TRIP, 2.0);
 
         assertThat(trip.getPricePerPlace()).isEqualTo(12.0);
     }
 
     @Test
     void should_have_price_of_5_if_eco_trip() {
-        carpoolingTrip trip = new carpoolingTrip("Eco", 5, 2.0);
+        carpoolingTrip trip = new carpoolingTrip("Eco", TripType.ECO_TRIP, 2.0);
 
         assertThat(trip.getPricePerPlace()).isEqualTo(5.0);
     }
 
     @Test
     void should_throw_exception_if_invalid_type() {
-        assertThatThrownBy(() -> new carpoolingTrip("Erreur", 999, 2.0))
+        assertThatThrownBy(() -> new carpoolingTrip("Erreur", TripType.ERROR, 2.0))
                 .isInstanceOf(RuntimeException.class)
                 .hasMessageContaining("illégal");
     }
@@ -50,9 +50,9 @@ class carpoolingTripTest {
     @Test
     void should_return_right_values_with_getters() {
         carpoolingTrip trip =
-                new carpoolingTrip("Maison → Travail", 3, 1.5);
+                new carpoolingTrip("Maison → Travail", TripType.SHUTTLE_TRIP, 1.5);
 
         assertThat(trip.getDescription()).isEqualTo("Maison → Travail");
-        assertThat(trip.getTripType()).isEqualTo(3);
+        assertThat(trip.getTripType()).isEqualTo(TripType.SHUTTLE_TRIP);
     }
 }
